@@ -1,14 +1,29 @@
-package com.example.project_1;
+package ru.ivanmurzin.mathtrainer;
 
-import androidx.appcompat.app.AppCompatActivity;
+import java.util.Random;
 
-import android.os.Bundle;
+public class Problem {
+    private int result;
+    private final Random random = new Random();
 
-public class MainActivity extends AppCompatActivity {
+    private int getRandom(int min, int max) {
+        return (int) (Math.random() * (max - min)) + min;
+    }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    public int getResult() {
+        return result;
+    }
+
+    public String getProblem() {
+        int a = getRandom(-50, 50);
+        int b = getRandom(0, 50);
+        String sign = getRandomSign();
+        if (sign.equals("+")) result = a + b;
+        else result = a - b;
+        return a + sign + b;
+    }
+
+    private String getRandomSign() {
+        return random.nextBoolean() ? "-" : "+";
     }
 }
